@@ -7,7 +7,7 @@ edition = "2021"
 crate-type = ["cdylib"]
 
 [dependencies]
-wasm-bindgen = "0.2.45"
+wasm-bindgen = "0.2.87"
 shared = { path = "../shared" }
 
 [package.metadata.wasm-pack.profile.release]

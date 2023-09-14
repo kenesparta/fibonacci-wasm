@@ -21,6 +21,7 @@ be/run:
 		--rm \
 		--runtime=io.containerd.wasmedge.v1 \
 		--platform=wasi/wasm32 \
+		--name=fibonacci-be \
 		$(CONTAINER_NAME):$(version)
 
 .PHONY : be/build-push
@@ -29,7 +30,8 @@ be/build-push: be/build be/push
 # Frontend commands
 .PHONY : fe/build
 fe/build:
-	docker build \
+	docker buildx build \
+		--platform linux/amd64 \
 		-t $(CONTAINER_NAME_FRONT):$(version) \
 		-f DockerfileFrontend .
 
@@ -42,3 +44,6 @@ fe/run:
 		-p 8080:8080 \
 		--name fibonacci-nginx \
 		$(CONTAINER_NAME_FRONT):$(version)
+
+fe/push:
+	 docker push $(CONTAINER_NAME_FRONT):$(version)
