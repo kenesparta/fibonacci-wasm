@@ -47,3 +47,7 @@ fe/run:
 
 fe/push:
 	 docker push $(CONTAINER_NAME_FRONT):$(version)
+
+fe/push-gcp:
+	gcloud auth application-default login --no-browser --client-id-file=sa.json
+	gcloud auth configure-docker us-central1-docker.pkg.dev

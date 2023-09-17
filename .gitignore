@@ -10,3 +10,4 @@ frontend/pkg
 # editor exclusions
 .idea
 .vscode
+sa.json
