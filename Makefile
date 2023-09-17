@@ -38,9 +38,6 @@ fe/build:
 .PHONY : fe/run
 fe/run:
 	docker run --rm \
-		-v $(PWD)/nginx/frontend.nginx.conf:/etc/nginx/conf.d/frontend.nginx.conf \
-		-v $(PWD)/frontend/index.html:/web/index.html \
-		-v $(PWD)/frontend/index.css:/web/index.css \
 		-p 8080:8080 \
 		--name fibonacci-nginx \
 		$(CONTAINER_NAME_FRONT):$(version)
@@ -49,5 +46,8 @@ fe/push:
 	 docker push $(CONTAINER_NAME_FRONT):$(version)
 
 fe/push-gcp:
-	gcloud auth application-default login --no-browser --client-id-file=sa.json
+	gcloud auth activate-service-account --key-file=sa.json
 	gcloud auth configure-docker us-central1-docker.pkg.dev
+	docker tag $(CONTAINER_NAME):$(version) us-central1-docker.pkg.dev/dockerayacucho/fibo-wasm-$(id)/$(CONTAINER_NAME):$(version)
+	docker push us-central1-docker.pkg.dev/dockerayacucho/fibo-wasm-$(id)/$(CONTAINER_NAME):$(version)
+
