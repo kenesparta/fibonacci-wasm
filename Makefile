@@ -30,8 +30,7 @@ be/build-push: be/build be/push
 # Frontend commands
 .PHONY : fe/build
 fe/build:
-	docker buildx build \
-		--platform linux/amd64 \
+	docker build \
 		-t $(CONTAINER_NAME_FRONT):$(version) \
 		-f DockerfileFrontend .
 
