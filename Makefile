@@ -48,6 +48,5 @@ fe/push:
 fe/push-gcp:
 	gcloud auth activate-service-account --key-file=sa.json
 	gcloud auth configure-docker us-central1-docker.pkg.dev
-	docker tag $(CONTAINER_NAME):$(version) us-central1-docker.pkg.dev/dockerayacucho/fibo-wasm-$(id)/$(CONTAINER_NAME):$(version)
-	docker push us-central1-docker.pkg.dev/dockerayacucho/fibo-wasm-$(id)/$(CONTAINER_NAME):$(version)
-
+	docker tag $(CONTAINER_NAME_FRONT):$(version) us-central1-docker.pkg.dev/dockerayacucho/fibo-wasm-$(id)/$(CONTAINER_NAME_FRONT):$(version)
+	docker push us-central1-docker.pkg.dev/dockerayacucho/fibo-wasm-$(id)/$(CONTAINER_NAME_FRONT):$(version)
