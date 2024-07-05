@@ -42,7 +42,7 @@ fe/run:
 		$(CONTAINER_NAME_FRONT):$(version)
 
 fe/push:
-	 docker push $(CONTAINER_NAME_FRONT):$(version)
+	 docker push $(CONTAINER_NAME_FRONT):0.0.3
 
 fe/push-gcp:
 	gcloud auth activate-service-account --key-file=sa.json

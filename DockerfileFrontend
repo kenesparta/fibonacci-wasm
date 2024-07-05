@@ -15,7 +15,8 @@ RUN cargo test && \
     mkdir web && \
     cp -r frontend/pkg web/pkg
 
-FROM --platform=linux/amd64 nginx:1.27-alpine
+FROM --platform=linux/amd64 nginx:1.27-alpine3.19
+RUN apk upgrade && apk update
 COPY --link --from=build /src/web /web
 COPY ./nginx/frontend.nginx.conf /etc/nginx/conf.d/frontend.nginx.conf
 COPY ./frontend/index.html /web/index.html
